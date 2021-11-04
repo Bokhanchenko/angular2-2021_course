@@ -1,6 +1,6 @@
-<!--<mc-loading *ngIf="isLoading$ | async"></mc-loading>-->
+<mc-loading *ngIf="isLoading$ | async"></mc-loading>
 
-<!--<mc-error-message *ngIf="error$ | async"></mc-error-message>-->
+<mc-error-message *ngIf="error$ | async"></mc-error-message>
 
 <div *ngIf="feed$ | async">
   <div
@@ -28,10 +28,11 @@
       HERE LIST OF TAGS
     </a>
   </div>
-<!--  <mc-pagination-->
-<!--    [total]="(feed$ | async)?.articlesCount"-->
-<!--    [limit]="limit"-->
-<!--    [url]="baseUrl"-->
-<!--    [currentPage]="currentPage"-->
-<!--  ></mc-pagination>-->
+
+  <mc-pagination
+    [total]="(feed$ | async)?.articlesCount"
+    [limit]="limit"
+    [url]="baseUrl"
+    [currentPage]="currentPage"
+  ></mc-pagination>
 </div>
