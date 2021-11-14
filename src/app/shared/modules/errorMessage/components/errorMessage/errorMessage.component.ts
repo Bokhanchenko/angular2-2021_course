@@ -5,5 +5,5 @@ import {Component, Input} from '@angular/core'
   template: '<div>{{messageProps}}</div>'
 })
 export class ErrorMessageComponent {
-  @Input('message') messageProps: string = 'Something went wrong'
+  @Input('message') messageProps: string | null = 'Something went wrong'
 }
