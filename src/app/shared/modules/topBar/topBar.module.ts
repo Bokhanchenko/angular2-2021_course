@@ -6,7 +6,7 @@ import {Observable} from "rxjs";
 import {CurrentUserInterface} from "../../types/currentUser.interface";
 import {select, Store} from "@ngrx/store";
 import {
-  currenUserSelector,
+  currentUserSelector,
   isAnonymousSelector,
   isLoggedInSelector
 } from "../../../auth/store/selectors";

@@ -27,7 +27,7 @@ export const isAnonymousSelector = createSelector(
   (authState: AuthStateInterface) => authState.isLoggedIn === false
 )
 
-export const currenUserSelector = createSelector(
+export const currentUserSelector = createSelector(
   authFeatureSelector,
   (authState: AuthStateInterface) => authState.currentUser
 )

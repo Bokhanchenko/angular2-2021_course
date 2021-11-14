@@ -4,7 +4,7 @@ import {CurrentUserInterface} from "../../../../types/currentUser.interface";
 import {select, Store} from "@ngrx/store";
 import {AppStateInterface} from "../../../../types/appState.interface";
 import {
-  currenUserSelector,
+  currentUserSelector,
   isAnonymousSelector,
   isLoggedInSelector
 } from "../../../../../auth/store/selectors";
@@ -25,6 +25,6 @@ export class TopBarComponent implements OnInit {
   ngOnInit(): void {
     this.isLoggedIn$ = this.store.pipe(select(isLoggedInSelector))
     this.isAnonymous$ = this.store.pipe(select(isAnonymousSelector))
-    this.currentUser$ = this.store.pipe(select(currenUserSelector))
+    this.currentUser$ = this.store.pipe(select(currentUserSelector))
   }
 }

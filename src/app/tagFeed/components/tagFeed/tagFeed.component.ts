@@ -7,7 +7,7 @@ import {ActivatedRoute, Params} from '@angular/router'
   styleUrls: ['./tagFeed.component.scss']
 })
 export class TagFeedComponent implements OnInit {
-  tagName: string | null
+  tagName: string
   apiUrl: string
 
   constructor(private route: ActivatedRoute) {}
