@@ -47,6 +47,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
     this.slug = this.route.snapshot.paramMap.get('slug')
     this.isLoading$ = this.store.pipe(select(isLoadingSelector))
     this.error$ = this.store.pipe(select(errorSelector))
+
     this.isAuthor$ = combineLatest(
       this.store.pipe(select(articleSelector)),
       this.store.pipe(select(currentUserSelector))
@@ -55,13 +56,10 @@ export class ArticleComponent implements OnInit, OnDestroy {
         ([article, currentUser]: [
           ArticleInterface | null,
           CurrentUserInterface | null
-        ]) => {
-          if (!article || !currentUser) {
-            return false
-          }
-          return currentUser.username === article.author.username
-        }
-      )
+        ]) => !!article &&
+          !!currentUser &&
+          (currentUser.username === article.author.username)
+        )
     )
   }
 
