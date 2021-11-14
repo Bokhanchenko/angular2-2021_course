@@ -1,4 +1,11 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core'
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges
+} from '@angular/core'
 import {select, Store} from "@ngrx/store";
 import {getFeedAction} from "../../store/actions/getFeed.action";
 import {Observable, Subscription} from "rxjs";
@@ -10,7 +17,7 @@ import {
 } from "../../store/selectore";
 import {AppStateInterface} from "../../../../types/appState.interface";
 import {environment} from "../../../../../../environments/environment";
-import {ActivatedRoute, Params, Router, RouterModule} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {parseUrl, stringify} from "query-string";
 
 @Component({
@@ -19,7 +26,7 @@ import {parseUrl, stringify} from "query-string";
   styleUrls: ['feed.component.scss'],
 })
 
-export class FeedComponent implements OnInit, OnDestroy {
+export class FeedComponent implements OnInit, OnDestroy, OnChanges {
   @Input('apiUrl') apiUrlProps: string
 
   isLoading$: Observable<boolean>
@@ -43,6 +50,15 @@ export class FeedComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.queryParamsSubscription.unsubscribe()
+  }
+
+  ngOnChanges (changes: SimpleChanges) {
+    const {firstChange, currentValue, previousValue} = changes.apiUrlProps
+    const isApiUrlChanged = !firstChange && currentValue !== previousValue
+
+    if (isApiUrlChanged) {
+      this.fetchFeed()
+    }
   }
 
   initializeValues(): void {
