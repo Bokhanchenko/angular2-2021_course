@@ -37,7 +37,7 @@ import {CreateArticleModule} from "./createArticle/createArticle.module";
     GlobalFeedModule,
     TagFeedModule,
     YourFeedModule,
-    // CreateArticleModule need to be first, because articles/new - new can get like :slug
+    // CreateArticleModule need to be first, because articles/new - new can take like :slug
     CreateArticleModule,
     ArticleModule
   ],
