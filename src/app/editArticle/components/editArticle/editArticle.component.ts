@@ -14,6 +14,7 @@ import {ActivatedRoute} from '@angular/router'
 import {filter, map} from 'rxjs/operators'
 import {ArticleInterface} from 'src/app/shared/types/article.interface'
 import {updateArticleAction} from 'src/app/editArticle/store/actions/updateArticle.action'
+
 import {AppStateInterface} from "../../../shared/types/appState.interface";
 
 @Component({
@@ -32,7 +33,7 @@ export class EditArticleComponent implements OnInit {
     private store: Store<AppStateInterface>,
     private route: ActivatedRoute
   ) {}
-
+  
   ngOnInit(): void {
     this.initialValues()
     this.fetchData()
