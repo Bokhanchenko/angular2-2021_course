@@ -1,11 +1,5 @@
 import {createReducer, on, Action} from '@ngrx/store'
 
-import {CreateArticleStateInterface} from 'src/app/createArticle/types/createArticleState.interface'
-import {
-  createArticleAction,
-  createArticleSuccessAction,
-  createArticleFailureAction
-} from 'src/app/createArticle/store/actions/createArticle.action'
 import {EditArticleStateInterface} from 'src/app/editArticle/types/editArticleState.interface'
 import {
   updateArticleAction,
