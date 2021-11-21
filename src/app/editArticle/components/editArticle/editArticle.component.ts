@@ -23,7 +23,7 @@ import {AppStateInterface} from "../../../shared/types/appState.interface";
   styleUrls: ['./editArticle.component.scss']
 })
 export class EditArticleComponent implements OnInit {
-  initialValues$: Observable<ArticleInputInterface>
+  initialValues$: Observable<ArticleInputInterface | null>
   isSubmitting$: Observable<boolean>
   isLoading$: Observable<boolean>
   backendErrors$: Observable<BackendErrorsInterface | null>
