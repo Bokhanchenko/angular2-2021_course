@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core'
+import {Component, OnDestroy, OnInit} from '@angular/core'
 import {UserProfileInterface} from '../../types/userProfile.interface'
 import {Observable, Subscription, combineLatest} from 'rxjs'
 import {Store, select} from '@ngrx/store'
@@ -19,8 +19,8 @@ import {AppStateInterface} from "../../../shared/types/appState.interface";
   templateUrl: './userProfile.component.html',
   styleUrls: ['./userProfile.component.scss']
 })
-export class UserProfileComponent implements OnInit {
-  userProfile: UserProfileInterface
+export class UserProfileComponent implements OnInit, OnDestroy {
+  userProfile: UserProfileInterface | null
   isLoading$: Observable<boolean>
   error$: Observable<string | null>
   userProfileSubscription: Subscription
@@ -37,20 +37,22 @@ export class UserProfileComponent implements OnInit {
     this.initializeValues()
     this.initializeListeners()
   }
+
+  ngOnDestroy(): void {
+    this.userProfileSubscription.unsubscribe()
+  }
+
   initializeValues(): void {
     this.slug = this.route.snapshot.paramMap.get('slug') || ''
     this.isLoading$ = this.store.pipe(select(isLoadingSelector))
     this.error$ = this.store.pipe(select(errorSelector))
-    this.isCurrentUserProfile$ = combineLatest(
+    this.isCurrentUserProfile$ = combineLatest([
       this.store.pipe(select(currentUserSelector), filter(Boolean)),
       this.store.pipe(select(userProfileSelector), filter(Boolean))
-    ).pipe(
+    ]).pipe(
       map(
-        ([currentUser, userProfile]: [
-          CurrentUserInterface,
-          UserProfileInterface
-        ]) => {
-          return currentUser.username === userProfile.username
+        ([currentUser, userProfile]) => {
+          return currentUser?.username === userProfile?.username
         }
       )
     )
@@ -66,7 +68,7 @@ export class UserProfileComponent implements OnInit {
   initializeListeners(): void {
     this.userProfileSubscription = this.store
       .pipe(select(userProfileSelector))
-      .subscribe((userProfile: UserProfileInterface) => {
+      .subscribe((userProfile: UserProfileInterface | null) => {
         this.userProfile = userProfile
       })
 

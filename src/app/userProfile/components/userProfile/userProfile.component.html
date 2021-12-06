@@ -6,19 +6,22 @@
           <img class="user-img" [src]="userProfile.image" />
           <h4>{{ userProfile.username }}</h4>
           <p>{{ userProfile.bio }}</p>
+
           <div>
             FOLLOW USER BUTTON
             <a
               *ngIf="isCurrentUserProfile$ | async"
               class="btn btn-sm btn-outline-secondary action-btn"
               [routerLink]="['/settings']"
-              >Edit Profile Settings</a
             >
+              Edit Profile Settings
+            </a>
           </div>
         </div>
       </div>
     </div>
   </div>
+
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-md-10 offset-md-1">
