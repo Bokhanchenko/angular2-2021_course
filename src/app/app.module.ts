@@ -19,6 +19,8 @@ import {TagFeedModule} from "./tagFeed/tagFeed.module";
 import {ArticleModule} from "./article/article.module";
 import {CreateArticleModule} from "./createArticle/createArticle.module";
 import {EditArticleModule} from "./editArticle/editArticle.module";
+import {SettingsModule} from "./settings/settings.module";
+import {UserProfileModule} from "./userProfile/userProfile.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -41,7 +43,9 @@ import {EditArticleModule} from "./editArticle/editArticle.module";
     // CreateArticleModule need to be first, because articles/new - new can take like :slug
     CreateArticleModule,
     ArticleModule,
-    EditArticleModule
+    EditArticleModule,
+    SettingsModule,
+    UserProfileModule
   ],
   providers: [
     PersistenceService,
